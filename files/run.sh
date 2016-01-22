@@ -40,7 +40,7 @@ exit 0;
 
 # Sanity (ha ha ha) checks
 
-if stat /var/run/captagent.pid ; then
+if stat /var/run/captagent.pid 2>/dev/null ; then
   CAPTAGENT_PID=$(cat /var/run/captagent.pid)
   if [[ "$CAPTAGENT_PID" != "" && "$( ps -e | grep $CAPTAGENT_PID | grep captagent)" != "" ]] ; then
     echo "O M Geeze. Still running! check your /var/run/captagent.pid"
@@ -110,7 +110,7 @@ done
 # perl -p -i -e "s/\{\{ CLI_PASSWORD \}\}/$CLI_PASSWORD/" $PATH_CAPTAGENT_CLI_XML
 
 envsubst </etc/captagent/socket_pcap.xml-template >/etc/captagent/socket_pcap.xml
-envsubst </etc/captagent/transport_hep.xml.template >/etc/captagent/transport_hep.xml
+envsubst </etc/captagent/transport_hep.xml-template >/etc/captagent/transport_hep.xml
 
 # Finally, run captagent in foreground.
 
