@@ -19,7 +19,7 @@ RUN mkdir -p /usr/lib64; \
     ln -sf /usr/src/captagent/conf/database_hash.xml /etc/captagent/database_hash.xml
 
 WORKDIR /
-COPY files/ /
+ADD files/ /
 
 EXPOSE 8909
 ENTRYPOINT [ "/run.sh" ]
